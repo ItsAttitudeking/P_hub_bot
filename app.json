@@ -1,0 +1,41 @@
+{
+  "name": "PHub Bot",
+  "description": "Telegram PHub Bot Written In Python Using ARQ API.",
+  "logo": "https://telegra.ph/file/508d8bc4e86ff19a7c958.jpg",
+  "repository": "https://github.com/ItsAttitudeking/P_hub_bot",
+  "keywords": [
+    "python",
+    "telegram",
+    "bot",
+    "phub",
+    "phub bot",
+    "telegram-bot",
+    "pyrogram",
+    "ARQ",
+    "pornhub",
+    "API",
+    "Download"
+  ],
+  "stack": "heroku-20",
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "env": {
+    "Bot_token": {
+            "description": "Bot Token of your Telegram Bot from @BotFather",
+            "required": true
+    },
+    "ARQ_API_KEY": {
+	    "description": "Get this from @ARQRobot.",
+	    "required": true
+    }
+  },
+    "formation": {
+      "worker": {
+        "quantity": 1,
+        "size": "free"
+      }
+  }
+}

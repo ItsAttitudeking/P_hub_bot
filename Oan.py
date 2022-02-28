@@ -1,3 +1,10 @@
+# Disclaimer:
+#   This Repo is just an working case of ARQ API with Pyrogram.
+#   Telegram May ban your bot or your account since Porns aren't allowed in Telegram.
+#   We aren't reponsible  Your causes....Use with caution...
+#   We recommend you to use Alt account.
+#   For support https://t.me/PatheticProgrammers
+
 import os
 from aiohttp import ClientSession
 from pyrogram import filters, Client
@@ -20,9 +27,9 @@ arq = ARQ("https://thearq.tech", ARQ_API_KEY, session)
 pornhub = arq.pornhub
 phdl = arq.phdl
 
-app = Client("P_Hub_Bot", bot_token=Bot_token, api_id=6,
+app = Client("Tg_PHub_Bot", bot_token=Bot_token, api_id=6,
              api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e")
-print("\n ➢𝐎𝐀𝐍 Bot Started!...\n")
+print("\nBot Started!...\n")
 
 db = {}
 
@@ -42,7 +49,7 @@ async def time_to_seconds(time):
 )
 async def start(_, message):
     m= await message.reply_text(
-        text = "[🔔](https://telegra.ph/file/508d8bc4e86ff19a7c958.jpg) *Hi Iam @P_Hub_Robot 🔞* \n\n *📥You can Download Videos from PHub upto 1080p* ! \n\n\n 🔗𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐛𝐲 : *@Attitude_Network*"
+        text = "Hi Iam Tg_PHub_Bot.You can Download Videos from PHub upto 1080p !"
        )
 
 # Help-------------------------------------------------------------------------
@@ -51,14 +58,11 @@ async def start(_, message):
 )
 async def help(_, message):
     await message.reply_text(
-        """**📍Below are My Commands...🔧**
+        """**Below are My Commands...**
+/help To Show This Message.
+/repo To Get the Repo.
 
-📌 /help ➢ To Show This Message.
-📌 /repo ➢ To Get the Repo.
-
-🔎To Search in PHub just simply Type something
-
-🔗𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐛𝐲 : @Attitude_Network"""
+To Search in PHub just simply Type something"""
     )
     
 # Repo  -----------------------------------------------------------------------
@@ -67,7 +71,7 @@ async def help(_, message):
 )
 async def repo(_, message):
     m= await message.reply_text(
-        text="""[➢𝐎𝐀𝐍 : Repo📍](https://github.com/ItsAttitudeking/P_hub_bot) | [Support Group](https://t.me/OAN_Support)""",
+        text="""[Tg_PHub_Bot Repo](https://github.com/Devanagaraj/Tg_PHub_Bot) | [Support Group](https://t.me/PatheticProgrammers)""",
         disable_web_page_preview=True
        )
 
@@ -79,21 +83,21 @@ async def sarch(_,message):
     try:
         if "/" in message.text.split(None,1)[0]:
             await message.reply_text(
-                "**⏳Usage:**\n🕹️Just type Something to search in PHub Directly"
+                "**Usage:**\nJust type Something to search in PHub Directly"
             )
             return
     except:
         pass
-    m = await message.reply_text("📡Getting Results.....")
+    m = await message.reply_text("Getting Results.....")
     search = message.text
     try:
         resp = await pornhub(search,thumbsize="large")
         res = resp.result
     except:
-        await m.edit("❌Found Nothing... Try again")
+        await m.edit("Found Nothing... Try again")
         return
     if not resp.ok:
-        await m.edit("❌Found Nothing... Try again")
+        await m.edit("Found Nothing... Try again")
         return
     resolt = f"""
 **Title:** {res[0].title}
@@ -106,13 +110,13 @@ async def sarch(_,message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🔵Next🔵",
+                    InlineKeyboardButton("Next",
                                          callback_data="next"),
-                    InlineKeyboardButton(,"🔴Delete🔴",
+                    InlineKeyboardButton("Delete",
                                          callback_data="delete"),
                 ],
                 [
-                    InlineKeyboardButton("🟡Download🟡",
+                    InlineKeyboardButton("Download",
                                          callback_data="dload")
                 ]
             ]
@@ -129,7 +133,7 @@ async def callback_query_next(_, query):
     try:
         data = db[query.message.chat.id]
     except:
-        await m.edit("❌Something Wrong ..... **Search Again**")
+        await m.edit("Something Wrong ..... **Search Again**")
         return
     res = data['result']
     curr_page = int(data['curr_page'])
@@ -138,28 +142,28 @@ async def callback_query_next(_, query):
     if len(res) <= (cur_page+1):
         cbb = [
                 [
-                    InlineKeyboardButton("🟣Previous🟣",
+                    InlineKeyboardButton("Previous",
                                          callback_data="previous"),
-                    InlineKeyboardButton("🟢Download🟢",
+                    InlineKeyboardButton("Download",
                                          callback_data="dload"),
                 ],
                 [
-                    InlineKeyboardButton("🔴Delete🔴",
+                    InlineKeyboardButton("Delete",
                                          callback_data="delete"),
                 ]
               ]
     else:
         cbb = [
                 [
-                    InlineKeyboardButton("🟣Previous🟣",
+                    InlineKeyboardButton("Previous",
                                          callback_data="previous"),
-                    InlineKeyboardButton("🔵Next🔵",
+                    InlineKeyboardButton("Next",
                                          callback_data="next"),
                 ],
                 [
-                    InlineKeyboardButton("🔴Delete🔴",
+                    InlineKeyboardButton("Delete",
                                          callback_data="delete"),
-                    InlineKeyboardButton("🟢Download🟢",
+                    InlineKeyboardButton("Download",
                                          callback_data="dload")
                 ]
               ]
@@ -182,7 +186,7 @@ async def callback_query_next(_, query):
     try:
         data = db[query.message.chat.id]
     except:
-        await m.edit("❌Something Wrong ..... **Search Again**")
+        await m.edit("Something Wrong ..... **Search Again**")
         return
     res = data['result']
     curr_page = int(data['curr_page'])
@@ -191,28 +195,28 @@ async def callback_query_next(_, query):
     if cur_page != 0:
         cbb=[
                 [
-                    InlineKeyboardButton("🟣Previous🟣",
+                    InlineKeyboardButton("Previous",
                                          callback_data="previous"),
-                    InlineKeyboardButton("🔵Next🔵",
+                    InlineKeyboardButton("Next",
                                          callback_data="next"),
                 ],
                 [
-                    InlineKeyboardButton("🔴Delete🔴",
+                    InlineKeyboardButton("Delete",
                                          callback_data="delete"),
-                    InlineKeyboardButton("🟢Download🟢",
+                    InlineKeyboardButton("Download",
                                          callback_data="dload")
                 ]
             ]
     else:
         cbb=[
                 [
-                    InlineKeyboardButton("🔵Next🔵",
+                    InlineKeyboardButton("Next",
                                          callback_data="next"),
-                    InlineKeyboardButton("🔴Delete🔴",
+                    InlineKeyboardButton("Delete",
                                          callback_data="Delete"),
                 ],
                 [
-                    InlineKeyboardButton("🟢Download🟢",
+                    InlineKeyboardButton("Download",
                                          callback_data="dload")
                 ]
             ]
@@ -249,7 +253,7 @@ async def callback_query_next(_, query):
         b= [InlineKeyboardButton(f"{resolts.quality} - {resolts.size}", callback_data=f"phubdl {pos}")]
         pos += 1
         cbb.append(b)
-    cbb.append([InlineKeyboardButton("🔴Delete🔴", callback_data="delete")])
+    cbb.append([InlineKeyboardButton("Delete", callback_data="delete")])
     await m.edit(
         resolt,
         reply_markup=InlineKeyboardMarkup(cbb),
@@ -274,7 +278,7 @@ async def callback_query_dl(_, query):
         vid = await download_url(res[pos].url)
     except Exception as e:
         print(e)
-        await m.edit("❌Oops Download Error... Try again")
+        await m.edit("Oops Download Error... Try again")
         return
     await m.edit(f"**Uploading Now :\n\n'''{capsion}'''")
     await app.send_chat_action(m.chat.id, "upload_video")
